@@ -1,7 +1,8 @@
-
-import java.util.Arrays;
+package kyu6;
 
 /*
+Cure Cancer
+
 Now you are a doctor.
 
 You are working with a patient's body which has many cells.
@@ -22,28 +23,31 @@ before it's too late! :(
 
 example:
 
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecadecells <- here it is! [9, 20]
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
-cellscellscellscodecodecells
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuff1thinkThisIs".toCharArray(),   <- {9,14}
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray(),
+                         "someGreaTstuffIthinkThisIs".toCharArray()
+
 no bodies will have less than 3 cells.
 if the diagnose was a false alarm, return an empty array.
 
  */
-/**
- *
- * @author User
- */
+
+// @author Burlacu Valeri
+import java.util.Arrays;
+
 public class CureCancer {
 
     public static void main(String[] args) {
@@ -75,7 +79,7 @@ public class CureCancer {
         for (int i = 0; i < body.length - 1; i++) {
             for (int j = 0; j < body[i].length; j++) {
                 if (body[i][j] != body[i + 1][j]) {
-                    
+
                     if (i == 0) {
                         if (body[i][j] != body[2][j]) {
                             results[0] = i;
@@ -91,5 +95,6 @@ public class CureCancer {
             }
         }
         return new int[0];
+
     }
 }

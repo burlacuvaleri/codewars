@@ -1,0 +1,51 @@
+/*
+Jaden Smith, the son of Will Smith, is the star of films such as 
+The Karate Kid (2010) and After Earth (2013). Jaden is also known for
+some of his philosophy that he delivers via Twitter. When writing on Twitter,
+he is known for almost always capitalizing every word.
+
+Your task is to convert strings to how they would be written by Jaden Smith.
+The strings are actual quotes from Jaden Smith, but they are not capitalized 
+in the same way he originally typed them.
+
+Example:
+
+Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
+
+Note that the Java version expects a return value of null for an empty 
+string or null.
+
+ */
+package kyu7;
+
+/**
+ *
+ * @author iucosoft9
+ */
+public class JadenCasingStrings {
+
+    public static void main(String[] args) {
+        System.out.println(toJadenCase("How can mirrors be real if our eyes aren't real"));
+    }
+
+    public static String toJadenCase(String phrase) {
+        
+        if (phrase == null || phrase.length() == 0) {
+            return null;
+        }
+        
+        String[] words = phrase.split(" ");
+        phrase = "";
+        for (String elWord : words) {
+            elWord = Character.toUpperCase(elWord.charAt(0)) + elWord.substring(1, elWord.length());
+
+            if (phrase.length() == 0) {
+                phrase += elWord;
+            } else {
+                phrase += " " + elWord;
+            }
+        }
+        return phrase;
+    }
+}
