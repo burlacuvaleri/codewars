@@ -35,7 +35,7 @@ public class DeleteOccurrencesOfAnElementIfItOccursMoreThanNTimes {
 
     public static void main(String[] args) {
 
-        int[] rezultat = deleteNth(new int[]{1, 1, 3, 3, 7, 2, 2}, 2);       // de facut acest program
+        int[] rezultat = deleteNth(new int[]{1, 1, 3, 3, 7, 2, 2}, 2);       // de facut acest program bineeee
         for (int elRezultat : rezultat) {
             System.out.print(elRezultat + " ");
         }
