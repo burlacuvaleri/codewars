@@ -1,4 +1,6 @@
 /*
+Kata: Arrange Matrix by Diagonals -- OMG
+
 You will be given a 2d char array data.
 
 The task is to rearrange the elements in the SAME order, diagonally, like this:
@@ -31,85 +33,75 @@ All array dimensions will be greater than 0.
  */
 package kyu6;
 
-/**
- *
- * @author User
- */
 public class ArrangeMatrixByDiagonalsOMG {
 
     public static void main(String[] args) {
 
         char[][] data = {
-            {'1', '2', '3'},
-            {'4', '5', '6'}
+//            {'1', '2', '3'},
+//            {'4', '5', '6'},
+//            {'7', '8', '9'}
+                
+            {'j', 'a', 'v', 'a'},
+            {'c', 'o', 'd', 'e'},
+            {'t', 'a', 'c', 'o'}
         };
 
-        System.out.println("\ninitial : ");
-        afisez(data);
+        System.out.println("\nInitial table: ");
+        showTable(data);
 
         char[][] results = diagonalSort(data);
 
-        System.out.println("\nrezultatul : ");
-        afisez(results);
+        System.out.println("\nFinally table : ");
+        showTable(results);
     }
 
     public static char[][] diagonalSort(char[][] data) {
-                                                           // acest kata inca trebuie de papat :) 
-        
+
         char[][] matrix = new char[data.length][data[0].length];
-
-        String text = "";
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                text += data[i][j];
-            }
-
-        }
-        char[] items = text.toCharArray();
-
-        System.out.println("\ntext = " + text);
-        int length = items.length;
-        int width = matrix.length;
-        int height = matrix[0].length;
-        int lastRow = height - 1;
-
-        int a = 0;
-        int b = 0;
-        int A = 0;
-        int B = 0;
-        boolean firstColumn = true;
-
-        System.out.println("width = " + matrix.length);
-        System.out.println("height = " + matrix[0].length);
         
-        for (int i = 0; i < length; i++) {
-            System.out.println("[" + a + "," + b + "] = " + items[i]);
-            matrix[a][b] = items[i];
-            if (a == height - 1) {
-                firstColumn = false;
-            }
-            a--;
-            b++;
-            if (firstColumn) {
-                if (a < 0) {
-                    b = 0;
-                    A++;
-                    a = A;
-                }
-            } else {
-                if ((b == width) || ((b == width - 1) && (a < 0))) {
-                    B++;
-                    b = B;
-                    a = height - 1;
-                }
+        int nrOfCharacters = data.length * data[0].length;
+        char[] caracters = new char[nrOfCharacters];
+
+        int k = -1;
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[0].length; j++) {
+                k++;
+                caracters[k] = data[i][j];
+                
+                // Set initial the table matrix with '*'
+                matrix[i][j] = '*';
             }
         }
+       
+        int a = 0; // For my rows
+        int v = 0; // For my characters
 
+        do {
+            for (int i = a; i >= 0; i--) {
+
+                int j = 0;
+                do {
+                    if (matrix[i][j] == '*' ) {
+                        matrix[i][j] = caracters[v];                        
+                        v++;
+                        j = matrix[i].length;                        
+                    }
+
+                    j++;
+                } while (j < matrix[i].length);
+            }
+
+            if (a < data.length-1) {
+                a++;
+            }
+        } while (v < caracters.length);
+               
+        
         return matrix;
     }
 
-    private static void afisez(char[][] matrix) {
-        System.out.println("Afisez rezultatul: ");
+    private static void showTable(char[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 System.out.print(matrix[i][j] + " ");

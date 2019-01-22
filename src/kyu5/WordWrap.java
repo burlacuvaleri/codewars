@@ -1,4 +1,6 @@
 /*
+Kata: Word Wrap
+
 Your job is to write a function that takes a string and a maximum 
 number of characters per line and then inserts line breaks as 
 necessary so that no line in the resulting string is longer than 
@@ -36,10 +38,6 @@ Note: Sometimes spaces are hard to see in the test results window.
  */
 package kyu5;
 
-/**
- *
- * @author User
- */
 public class WordWrap {
 
     public static void main(String[] args) {
@@ -54,25 +52,48 @@ public class WordWrap {
 
     public static String wrap(String text, int limit) {
 
-        String results = "";                           //nu este finisat programul
-        int contor = 0;
-        String word = "";
+        String results = "";
+        int kontor = 0;
+        String lineBreak = "\n";
 
-        for (int i = 0; i < text.length(); i++) {
-            contor++;
-
-            word += text.charAt(i);
-
-            if ((contor == limit) || (contor == limit - 1)) {
-                results += (i == text.length() - 1) ? word : word + "--";
-                contor = 0;
-                word = "";
-
-                if (text.substring(i+1, i + 2).equals("")) {
-                    i++;
-                }
+        
+        if (text.length() <= limit) {
+                results = text;
+                return results;
             }
+        
+        if (text.substring(kontor + limit - 2, kontor + limit - 1).equals(" ")) {
+            results += text.substring(kontor, kontor + limit - 2);
+            text = text.substring(kontor + limit - 1);
+        } else if (text.substring(kontor + limit - 1, kontor + limit).equals(" ")) {
+            results += text.substring(kontor, kontor + limit - 1);
+            text = text.substring(kontor + limit);
         }
+
+        System.out.println("------------------------------------------------");
+        System.out.println("results =" + results);
+        System.out.println("text =" + text);
+        System.out.println("------------------------------------------------");
+
+        do {
+            if (text.length() <= limit) {
+                results += lineBreak + text;
+                break;
+            }
+            
+            kontor = 0;
+            if (text.substring(kontor + limit - 2, kontor + limit - 1).equals(" ")) {
+                results += lineBreak + text.substring(kontor, kontor + limit - 2);
+                text = text.substring(kontor + limit - 1);
+            } else if (text.substring(kontor + limit - 1, kontor + limit).equals(" ")) {
+                results += lineBreak + text.substring(kontor, kontor + limit - 1);
+                text = text.substring(kontor + limit);
+            } else {
+                results += lineBreak + text;
+            }
+
+        } while (text.length() >= 1);
+
         return results;
     }
 
